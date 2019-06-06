@@ -1,26 +1,24 @@
 clc
 clear
 %Defino ate qual n somatoria varia
-n=2;
-intervalo = 0:0.01:4*pi;
+n=50;
+intervalo = 0:0.01:12;
 indice = 1;
-T = 2*pi;
+T = 4;
 w = 2*pi/T;
 
 for t = intervalo
     valor = 0.0;
     for k = 0:n
-        if (k ~= 1.0)
-            valor = valor + (((1 - exp(-2*1i*pi*k*w))*exp(1i*k*t*w))/(2*pi*(1 - (k^2)*(w^2))));
+        if (k ~= 0.0)
+            valor = valor + ((4*1i*k*w - exp(4*1i*k*w) + 1)*exp(1i*k*t*w - 4*1i*k*w))/(4*pi*(k^2)*(w^2));
         else
-            valor = valor + (((-1)*1i*exp(1i*t))/(2));
+            valor = valor + (2/(pi));
         end
     end
     res(indice) = valor;
     indice = indice + 1;
 end
 
-seno = sin(intervalo);
 
 plot (intervalo, res);
-plot (intervalo,seno);
